@@ -117,7 +117,7 @@ export default function AgileStoryGenerator() {
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  placeholder="e.g., operators need to add ports to an itinerary"
+                  placeholder="e.g., Operators need to add port calls to a vessel's itinerary"
                   className="flex-1 text-lg min-h-[80px] max-h-48 py-4 px-4 border-2 border-gray-200 focus:border-purple-400 focus:ring-purple-400 resize-none shadow-sm"
                   disabled={isLoading}
                   rows={3}
