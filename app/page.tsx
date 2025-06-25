@@ -5,6 +5,7 @@ import type React from "react"
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent } from "@/components/ui/card"
 import { Loader2, Copy, CheckCircle, Sparkles, Wand2 } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
@@ -110,34 +111,37 @@ export default function AgileStoryGenerator() {
               <label htmlFor="feature-input" className="block text-lg font-semibold text-gray-700 text-center">
                 What feature would you like a user story for?
               </label>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Input
+              <div className="flex flex-col gap-4 sm:gap-6">
+                <Textarea
                   id="feature-input"
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
                   onKeyPress={handleKeyPress}
                   placeholder="e.g., operators need to add ports to an itinerary"
-                  className="flex-1 text-lg py-6 px-4 border-2 border-gray-200 focus:border-purple-400 focus:ring-purple-400"
+                  className="flex-1 text-lg min-h-[80px] max-h-48 py-4 px-4 border-2 border-gray-200 focus:border-purple-400 focus:ring-purple-400 resize-none shadow-sm"
                   disabled={isLoading}
+                  rows={3}
                 />
-                <Button
-                  onClick={generateStory}
-                  disabled={isLoading || !prompt.trim()}
-                  size="lg"
-                  className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
-                >
-                  {isLoading ? (
-                    <>
-                      <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                      Generating...
-                    </>
-                  ) : (
-                    <>
-                      <Sparkles className="w-5 h-5 mr-2" />
-                      Generate Story
-                    </>
-                  )}
-                </Button>
+                <div className="flex justify-center">
+                  <Button
+                    onClick={generateStory}
+                    disabled={isLoading || !prompt.trim()}
+                    size="lg"
+                    className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
+                  >
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                        Generating...
+                      </>
+                    ) : (
+                      <>
+                        <Sparkles className="w-5 h-5 mr-2" />
+                        Generate Story
+                      </>
+                    )}
+                  </Button>
+                </div>
               </div>
               <p className="text-sm text-gray-500 text-center">
                 Press Enter or click the button to generate your story
